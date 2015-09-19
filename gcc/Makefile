@@ -31,7 +31,7 @@ LFLAGS:= $(patsubst %,-L%,$(LIB_DIRS)) $(patsubst %,-l%,$(LIB_NAMES)) -T$(LD_SCR
 DEFINES:= USE_HAL_DRIVER
 DEFINE_FLAGS:=$(patsubst %,-D%,$(DEFINES))
 INCLUDE_FLAGS:=$(patsubst %,-I%,$(INCLUDE_DIRS)) 
-CFLAGS= -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -std=c99 -Wall -g -ffunction-sections -fdata-sections 
+CFLAGS= -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -std=c99 -Wall -g -O1 -ffunction-sections -fdata-sections
 CPPFLAGS= $(INCLUDE_FLAGS) $(DEFINE_FLAGS) -D$(TCHIP) 
 vpath %.h $(INCLUDE_DIRS)
 vpath %.c $(SOURCE_DIRS)
