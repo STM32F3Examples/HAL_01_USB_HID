@@ -1,10 +1,10 @@
 /**
   ******************************************************************************
-  * @file    USB_Device/HID_Standalone/Inc/main.h 
+  * @file    USB_Device/HID_Standalone/Inc/usbd_desc.h
   * @author  MCD Application Team
   * @version V1.2.0
   * @date    19-June-2015
-  * @brief   Header for main.c module
+  * @brief   Header for usbd_desc.c module
   ******************************************************************************
   * @attention
   *
@@ -24,35 +24,25 @@
   *
   ******************************************************************************
   */
-  
+
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __MAIN_H
-#define __MAIN_H
+#ifndef __USBD_DESC_H
+#define __USBD_DESC_H
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32f3xx_hal.h"
-#include "stm32f3xx_nucleo.h"
-#include "usbd_core.h"
-#include "usbd_desc.h"
-#include "usbd_hid.h" 
+#include "usbd_def.h"
 
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
+#define         DEVICE_ID1          (0x1FFFF7AC)
+#define         DEVICE_ID2          (0x1FFFF7B0)
+#define         DEVICE_ID3          (0x1FFFF7B4)
+
+#define  USB_SIZ_STRING_SERIAL               0x1A
 /* Exported macro ------------------------------------------------------------*/
-
-/* It is possible to remap the USB interrupts (USB_LP and USB_WKUP) on interrupt 
-   lines 75 and 76.
-   Uncomment the line below to select your USB Interrupt Line */
-
-#define USE_USB_INTERRUPT_DEFAULT   1
-//#define USE_USB_INTERRUPT_REMAPPED        1
-
-#if !defined (USE_USB_INTERRUPT_DEFAULT) && !defined (USE_USB_INTERRUPT_REMAPPED)
- #error "Missing define Please Define Your Interrupt Mode By UnComment Line in main.h file"
-#endif
 /* Exported functions ------------------------------------------------------- */
-void Toggle_Leds(void);
+extern USBD_DescriptorsTypeDef HID_Desc;
 
-#endif /* __MAIN_H */
-
+#endif /* __USBD_DESC_H */
+ 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

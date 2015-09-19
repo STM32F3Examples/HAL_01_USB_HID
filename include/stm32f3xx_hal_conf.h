@@ -2,7 +2,7 @@
   ******************************************************************************
   * @file    stm32f3xx_hal_conf.h
   * @author  MCD Application Team
-  * @version V1.1.1
+  * @version V1.2.0
   * @date    19-June-2015
   * @brief   HAL configuration file.
   ******************************************************************************
@@ -51,39 +51,35 @@
   * @brief This is the list of modules to be used in the HAL driver 
   */
 #define HAL_MODULE_ENABLED
-#define HAL_ADC_MODULE_ENABLED
-#define HAL_CAN_MODULE_ENABLED
-#define HAL_CEC_MODULE_ENABLED
-#define HAL_COMP_MODULE_ENABLED
+// #define HAL_ADC_MODULE_ENABLED
+// #define HAL_CAN_MODULE_ENABLED
+// #define HAL_CEC_MODULE_ENABLED
+// #define HAL_COMP_MODULE_ENABLED
 #define HAL_CORTEX_MODULE_ENABLED
-#define HAL_CRC_MODULE_ENABLED
-#define HAL_DAC_MODULE_ENABLED
+// #define HAL_CRC_MODULE_ENABLED
+// #define HAL_DAC_MODULE_ENABLED
 #define HAL_DMA_MODULE_ENABLED
 #define HAL_FLASH_MODULE_ENABLED
-#define HAL_SRAM_MODULE_ENABLED
-#define HAL_NOR_MODULE_ENABLED
-#define HAL_NAND_MODULE_ENABLED
-#define HAL_PCCARD_MODULE_ENABLED
 #define HAL_GPIO_MODULE_ENABLED
-#define HAL_HRTIM_MODULE_ENABLED
+// #define HAL_HRTIM_MODULE_ENABLED
 #define HAL_I2C_MODULE_ENABLED
-#define HAL_I2S_MODULE_ENABLED
-#define HAL_IRDA_MODULE_ENABLED
-#define HAL_IWDG_MODULE_ENABLED
-#define HAL_OPAMP_MODULE_ENABLED
-#define HAL_PCD_MODULE_ENABLED
+// #define HAL_I2S_MODULE_ENABLED
+// #define HAL_IRDA_MODULE_ENABLED
+// #define HAL_IWDG_MODULE_ENABLED
+// #define HAL_OPAMP_MODULE_ENABLED
 #define HAL_PWR_MODULE_ENABLED
 #define HAL_RCC_MODULE_ENABLED
 #define HAL_RTC_MODULE_ENABLED
-#define HAL_SDADC_MODULE_ENABLED
-#define HAL_SMARTCARD_MODULE_ENABLED
-#define HAL_SMBUS_MODULE_ENABLED
+// #define HAL_SDADC_MODULE_ENABLED
+// #define HAL_SMARTCARD_MODULE_ENABLED
+// #define HAL_SMBUS_MODULE_ENABLED
 #define HAL_SPI_MODULE_ENABLED
-#define HAL_TIM_MODULE_ENABLED
-#define HAL_TSC_MODULE_ENABLED
+// #define HAL_TIM_MODULE_ENABLED
+// #define HAL_TSC_MODULE_ENABLED
 #define HAL_UART_MODULE_ENABLED
-#define HAL_USART_MODULE_ENABLED
-#define HAL_WWDG_MODULE_ENABLED
+#define HAL_PCD_MODULE_ENABLED   
+// #define HAL_USART_MODULE_ENABLED
+// #define HAL_WWDG_MODULE_ENABLED
 
 /* ########################## HSE/HSI Values adaptation ##################### */
 /**
@@ -154,9 +150,9 @@
   * @brief This is the HAL system configuration section
   */     
 #define  VDD_VALUE                    ((uint32_t)3300) /*!< Value of VDD in mv */
-#define  TICK_INT_PRIORITY            ((uint32_t)(1<<__NVIC_PRIO_BITS) - 1)   /*!< tick interrupt priority (lowest by default) */
-#define  USE_RTOS                     0
-#define  PREFETCH_ENABLE              1
+#define  TICK_INT_PRIORITY            0 
+#define  USE_RTOS                     0     
+#define  PREFETCH_ENABLE              1              
 #define  INSTRUCTION_CACHE_ENABLE     0
 #define  DATA_CACHE_ENABLE            0
 
@@ -216,22 +212,6 @@
  #include "stm32f3xx_hal_flash.h"
 #endif /* HAL_FLASH_MODULE_ENABLED */
 
-#ifdef HAL_SRAM_MODULE_ENABLED
-  #include "stm32f3xx_hal_sram.h"
-#endif /* HAL_SRAM_MODULE_ENABLED */
-
-#ifdef HAL_NOR_MODULE_ENABLED
-  #include "stm32f3xx_hal_nor.h"
-#endif /* HAL_NOR_MODULE_ENABLED */
-
-#ifdef HAL_NAND_MODULE_ENABLED
-  #include "stm32f3xx_hal_nand.h"
-#endif /* HAL_NAND_MODULE_ENABLED */
-
-#ifdef HAL_PCCARD_MODULE_ENABLED
-  #include "stm32f3xx_hal_pccard.h"
-#endif /* HAL_PCCARD_MODULE_ENABLED */ 
-  
 #ifdef HAL_HRTIM_MODULE_ENABLED
  #include "stm32f3xx_hal_hrtim.h"
 #endif /* HAL_HRTIM_MODULE_ENABLED */
@@ -255,10 +235,6 @@
 #ifdef HAL_OPAMP_MODULE_ENABLED
  #include "stm32f3xx_hal_opamp.h"
 #endif /* HAL_OPAMP_MODULE_ENABLED */
-
-#ifdef HAL_PCD_MODULE_ENABLED
- #include "stm32f3xx_hal_pcd.h"
-#endif /* HAL_PCD_MODULE_ENABLED */
 
 #ifdef HAL_PWR_MODULE_ENABLED
  #include "stm32f3xx_hal_pwr.h"
@@ -304,6 +280,9 @@
  #include "stm32f3xx_hal_wwdg.h"
 #endif /* HAL_WWDG_MODULE_ENABLED */
 
+#ifdef HAL_PCD_MODULE_ENABLED
+ #include "stm32f3xx_hal_pcd.h"
+#endif /* HAL_PCD_MODULE_ENABLED */
 /* Exported macro ------------------------------------------------------------*/
 #ifdef  USE_FULL_ASSERT
 /**

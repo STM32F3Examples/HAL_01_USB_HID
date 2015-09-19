@@ -1,10 +1,16 @@
-INCLUDE_DIRS:= device/include cmsis/include ../include ../STM32F3xx_HAL_Driver/Inc
-SOURCE_DIRS:=  device/source ../source ../STM32F3xx_HAL_Driver/Src
+INCLUDE_DIRS:= device/include cmsis/include ../include ../STM32F3xx_HAL_Driver/Inc ../STM32F3xx-Nucleo ../STM32_USB_Device_Library/Core/Inc ../STM32_USB_Device_Library/Class/HID/Inc
+SOURCE_DIRS:=  device/source ../source ../STM32F3xx_HAL_Driver/Src ../STM32F3xx-Nucleo ../STM32_USB_Device_Library/Core/Src ../STM32_USB_Device_Library/Class/HID/Src
 
-#All the dtandard peripherial library files
+#All the HAL files
 HAL_FILES:= $(notdir $(wildcard ../STM32F3xx_HAL_Driver/Src/*.c ))
+#BOARD FILES
+BOARD_FILES:= stm32f3xx_nucleo.c
+#USB FILES
+USB_FILES:= usbd_hid.c usbd_core.c usbd_ctlreq.c usbd_ioreq.c
+#LOCAL SOURCE
+LOCAL_SOURCE:= main.c stm32f3xx_it.c usbd_conf.c usbd_desc.c
 #the C files to compile
-CFILES:=system_stm32f3xx.c main.c $(HAL_FILES) stm32f3xx_hal_msp.c stm32f3xx_it.c
+CFILES:=system_stm32f3xx.c $(HAL_FILES) $(LOCAL_SOURCE) $(USB_FILES) $(BOARD_FILES)
 #the assembly files assemble
 ASM_FILES:=startup_stm32f302x8.s 
 #the target microcontroller
