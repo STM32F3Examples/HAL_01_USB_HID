@@ -1,10 +1,10 @@
-INCLUDE_DIRS:= device/include cmsis/include ../include 
-SOURCE_DIRS:=  device/source ../source 
+INCLUDE_DIRS:= device/include cmsis/include ../include ../STM32F3xx_HAL_Driver/Inc
+SOURCE_DIRS:=  device/source ../source ../STM32F3xx_HAL_Driver/Src
 
 #All the dtandard peripherial library files
-#SPL_FILES:= $(notdir $(wildcard ../STM32F30x_StdPeriph_Driver/src/*.c ))
+HAL_FILES:= $(notdir $(wildcard ../STM32F3xx_HAL_Driver/Src/*.c ))
 #the C files to compile
-CFILES:=system_stm32f3xx.c main.c $(SPL_FILES)
+CFILES:=system_stm32f3xx.c main.c $(HAL_FILES)
 #the assembly files assemble
 ASM_FILES:=startup_stm32f302x8.s 
 #the target microcontroller
