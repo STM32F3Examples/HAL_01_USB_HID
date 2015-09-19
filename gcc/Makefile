@@ -4,7 +4,7 @@ SOURCE_DIRS:=  device/source ../source ../STM32F3xx_HAL_Driver/Src
 #All the dtandard peripherial library files
 HAL_FILES:= $(notdir $(wildcard ../STM32F3xx_HAL_Driver/Src/*.c ))
 #the C files to compile
-CFILES:=system_stm32f3xx.c main.c $(HAL_FILES)
+CFILES:=system_stm32f3xx.c main.c $(HAL_FILES) stm32f3xx_hal_msp.c stm32f3xx_it.c
 #the assembly files assemble
 ASM_FILES:=startup_stm32f302x8.s 
 #the target microcontroller

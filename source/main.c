@@ -17,6 +17,7 @@ void button_init(void);
 
 int main(){
 	//System configuration
+	HAL_Init();
 	led_init();
 	button_init();
 

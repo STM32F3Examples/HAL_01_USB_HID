@@ -1,22 +1,10 @@
 /**
   ******************************************************************************
-  * @file    stm32f3xx_hal_msp_template.c
+  * @file    Templates/Src/stm32f3xx_hal_msp.c
   * @author  MCD Application Team
-  * @version V1.1.1
+  * @version V1.2.0
   * @date    19-June-2015
   * @brief   HAL MSP module.
-  *          This file template is located in the HAL folder and should be copied 
-  *          to the user folder.
-  *         
-  @verbatim
- ===============================================================================
-                     ##### How to use this driver #####
- ===============================================================================
-    [..]
-    This file is generated automatically by MicroXplorer and eventually modified 
-    by the user
-
-  @endverbatim
   ******************************************************************************
   * @attention
   *
@@ -45,17 +33,16 @@
   * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   *
   ******************************************************************************
-  */ 
+  */
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32f3xx_hal.h"
+#include "main.h"
 
-/** @addtogroup STM32F3xx_HAL_Driver
+/** @addtogroup STM32F3xx_HAL_Examples
   * @{
   */
 
-/** @defgroup HAL_MSP HAL MSP module
-  * @brief HAL MSP module.
+/** @addtogroup Templates
   * @{
   */
 
@@ -64,14 +51,15 @@
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 /* Private function prototypes -----------------------------------------------*/
-/* Exported functions ---------------------------------------------------------*/
+/* Private functions ---------------------------------------------------------*/
 
-/** @defgroup HAL_MSP_Exported_Functions HAL MSP Exported Functions
+/** @defgroup HAL_MSP_Private_Functions
   * @{
   */
 
 /**
   * @brief  Initializes the Global MSP.
+  * @param  None
   * @retval None
   */
 void HAL_MspInit(void)
@@ -83,6 +71,7 @@ void HAL_MspInit(void)
 
 /**
   * @brief  DeInitializes the Global MSP.
+  * @param  None  
   * @retval None
   */
 void HAL_MspDeInit(void)
@@ -94,25 +83,27 @@ void HAL_MspDeInit(void)
 
 /**
   * @brief  Initializes the PPP MSP.
+  * @param  None
   * @retval None
   */
-void HAL_PPP_MspInit(void)
-{
+//void HAL_PPP_MspInit(void)
+//{
   /* NOTE : This function is generated automatically by MicroXplorer and eventually  
             modified by the user
    */ 
-}
+//}
 
 /**
   * @brief  DeInitializes the PPP MSP.
+  * @param  None  
   * @retval None
   */
-void HAL_PPP_MspDeInit(void)
-{
+//void HAL_PPP_MspDeInit(void)
+//{
   /* NOTE : This function is generated automatically by MicroXplorer and eventually  
             modified by the user
    */
-}
+//}
 
 /**
   * @}
