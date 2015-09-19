@@ -10,7 +10,7 @@
 void led_init(void);
 
 /**
- * Configure the pin PA13 as a input with internal pull-up, where the user button
+ * Configure the pin PC13 as a input with internal pull-up, where the user button
  * connected, this pin low active, This function enables interrupt EXTI15_10_IRQn
  */
 void button_init(void);
@@ -29,27 +29,28 @@ int main(){
 
 void led_init(void){
 	//Turn on the GPIOB peripherial
-	RCC->AHBENR |= RCC_AHBENR_GPIOBEN;
+	__GPIOB_CLK_ENABLE();
 	//Configure PB13  as push pull ouput an set the output to high 
-	GPIOB->MODER &=~(GPIO_MODER_MODER13);
-	GPIOB->MODER |=GPIO_MODER_MODER13_0;//output
-	GPIOB->ODR |= GPIO_ODR_13;
-}
+	GPIO_InitTypeDef myGPIO;
+	myGPIO.Mode = GPIO_MODE_OUTPUT_PP;
+	myGPIO.Pin = GPIO_PIN_13;
+	myGPIO.Pull = GPIO_NOPULL;
+ 	myGPIO.Speed = GPIO_SPEED_LOW;
+	
+	HAL_GPIO_Init(GPIOB, &myGPIO);
+	HAL_GPIO_WritePin(GPIOB,GPIO_PIN_13,ENABLE);
+ }
 
 void button_init(void){
-	//needed for interrupt source remaping
-	RCC->AHBENR |= RCC_AHBENR_GPIOCEN;
+	__GPIOC_CLK_ENABLE();	
+	//Configure PC13 as input with pull-up
+	GPIO_InitTypeDef myGPIO;
+	myGPIO.Mode = GPIO_MODE_INPUT | GPIO_MODE_IT_RISING_FALLING;
+	myGPIO.Pin = GPIO_PIN_13;
+	myGPIO.Pull = GPIO_PULLUP;
+ 	myGPIO.Speed = GPIO_SPEED_LOW;
 	
-	//Configure PA13 as input with pull-up
-	GPIOC->MODER &=~(GPIO_MODER_MODER13);
-	GPIOC->PUPDR |= GPIO_PUPDR_PUPDR13_0;
-
-	//configure interrupt
-	RCC->APB2ENR|= RCC_APB2ENR_SYSCFGEN;//Enable sysconfig registers
-	SYSCFG->EXTICR[3] |=SYSCFG_EXTICR4_EXTI13_PC;
-	EXTI->IMR |= EXTI_IMR_MR13;
-	EXTI->RTSR |= EXTI_RTSR_TR13;
-	EXTI->FTSR |= EXTI_FTSR_TR13;
+	HAL_GPIO_Init(GPIOC, &myGPIO);
 	NVIC_EnableIRQ(EXTI15_10_IRQn);
 }
 
@@ -57,6 +58,7 @@ void button_init(void){
  * Exteral interrupt handler
  */
 void EXTI15_10_IRQHandler(void){
-	EXTI->PR = EXTI_PR_PR13;
-	GPIOB->ODR = GPIOC->IDR;//Transfer button value to led
+	__HAL_GPIO_EXTI_CLEAR_IT(GPIO_PIN_13);
+	//Transfer button value to led
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, HAL_GPIO_ReadPin(GPIOC,GPIO_PIN_13));
 }
